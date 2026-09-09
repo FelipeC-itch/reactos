@@ -23,10 +23,13 @@ list(APPEND SOURCE
     src/internal.h)
 
 add_library(adns ${SOURCE})
+add_pch(adns src/internal.h SOURCE)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
     target_compile_options(adns PRIVATE -Wno-unused-but-set-variable)
 endif()
 
 add_dependencies(adns psdk)
-add_pch(adns src/internal.h SOURCE)
+target_include_directories(adns
+    INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/src
+    INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/adns_win32)

@@ -14,6 +14,7 @@ if(CMAKE_CROSSCOMPILING)
     add_library(inflib ${SOURCE})
     add_pch(inflib inflib.h SOURCE)
     add_dependencies(inflib psdk)
+    target_include_directories(inflib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 else()
     list(APPEND SOURCE
         infhostgen.c
